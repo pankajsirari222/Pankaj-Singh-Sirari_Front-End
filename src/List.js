@@ -7,10 +7,7 @@ const WrappedSingleListItem = ({ index, isSelected, onClickHandler, text }) => {
   return (
     <li
       style={{ backgroundColor: isSelected ? "green" : "red" }}
-
-      // For calling a function with parameter using on click event, we need to
-      //  call it using arrow function.
-
+      //Error 1
       onClick={()=> onClickHandler(index)}
     >
       {text}
@@ -19,8 +16,9 @@ const WrappedSingleListItem = ({ index, isSelected, onClickHandler, text }) => {
 };
 
 WrappedSingleListItem.propTypes = {
-  index: PropTypes.number.isRequired, //isRequired
-  isSelected: PropTypes.bool.isRequired,  //isRequired
+  // Error 2
+  index: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool.isRequired,
   onClickHandler: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
@@ -30,15 +28,10 @@ const SingleListItem = memo(WrappedSingleListItem);
 // List Component
 
 const WrappedListComponent = ({ items }) => {
-
-// selectedIndex and setSelectedIndex were written in wrong sequence.
-//  The convention for useState is to name state variables like 
-// [state setState] using array destructuring.
-
+  // Error 3
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   useEffect(() => {
-    // It will not take null
     setSelectedIndex(-1);
   }, [items]);
 
@@ -53,9 +46,10 @@ const WrappedListComponent = ({ items }) => {
           onClickHandler={() => handleClick(index)}
           text={item.text}
           index={index}
-          // === used to compare selectedIndex and index
+          // Error 4
           isSelected={selectedIndex === index}
-          key= {index}  // key prop is used for map function for unique keys
+          // Error 5
+          key= {index}
         />
       ))}
     </ul>
@@ -63,7 +57,7 @@ const WrappedListComponent = ({ items }) => {
 };
 
 WrappedListComponent.propTypes = {
-  // It will be arrayOf instead of shapeOf
+  // Error 6
   items: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
@@ -72,7 +66,7 @@ WrappedListComponent.propTypes = {
 };
 
 WrappedListComponent.defaultProps = {
-  // It will take empty array not null
+  // Error 7
   items: [],
 };
 

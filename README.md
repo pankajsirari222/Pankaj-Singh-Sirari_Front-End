@@ -27,8 +27,10 @@ It will be ```onClick={()=> onClickHandler(index)}```
   ```index: PropTypes.number.isRequired``` and  ``` isSelected: PropTypes.bool.isRequired```.
 
 3. selectedIndex and setSelectedIndex are written in wrong sequence. The convention for useState is to name state variables like [state setState] using array destructuring. Also, selectedIndex will be initialised to -1 as it will take integer values starting from 0. So, updated code will be like this: -
-```const [selectedIndex, setSelectedIndex] = useState(-1);```
+```javascript
+const [selectedIndex, setSelectedIndex] = useState(-1);
 ```
+```javascript
 useEffect(() => {
 setSelectedIndex(-1);
   }, [items]);
@@ -42,7 +44,8 @@ setSelectedIndex(-1);
 
 6. Instead of shapeOf,it will be ```PropTypes.shape``` and also, ```PropTypes.arrayOf``` will be used.
 
-```items: PropTypes.arrayOf(
+```javascript
+  items: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
     })
@@ -50,7 +53,7 @@ setSelectedIndex(-1);
   ```
 
 7. Default prop for items will be [] i.e. empty array instead of null.
-```
+```javascript
 WrappedListComponent.defaultProps = {
   items: [],
 };
