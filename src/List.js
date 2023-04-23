@@ -67,7 +67,13 @@ WrappedListComponent.propTypes = {
 
 WrappedListComponent.defaultProps = {
   // Error 7
-  items: [],
+  items: [
+    { text: 'Item 1' },
+    { text: 'Item 2' },
+    { text: 'Item 3' },
+    { text: 'Item 4' },
+    { text: 'Item 5' },
+  ],
 };
 
 const List = memo(WrappedListComponent);

@@ -52,10 +52,16 @@ setSelectedIndex(-1);
   )
   ```
 
-7. Default prop for items will be [] i.e. empty array instead of null.
+7. Default prop for items need to be passed, it cannot be null.
 ```javascript
 WrappedListComponent.defaultProps = {
-  items: [],
+  items: [
+    { text: 'Item 1' },
+    { text: 'Item 2' },
+    { text: 'Item 3' },
+    { text: 'Item 4' },
+    { text: 'Item 5' },
+  ],
 };
 ```
 
